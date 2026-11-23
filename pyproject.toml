@@ -1,0 +1,25 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mdr-mcp"
+version = "0.1.0"
+description = "Unofficial read-only MCP server for MDR (Mitteldeutscher Rundfunk) — headlines, news by state, city and section, search and article text via the official RSS feeds"
+readme = "README.md"
+license = { text = "PolyForm-Noncommercial-1.0.0" }
+requires-python = ">=3.10"
+dependencies = [
+    "mcp<2",
+    "httpx>=0.27",
+]
+authors = [{ name = "Mohammad Abbasi" }]
+
+[project.scripts]
+mdr-mcp = "mdr_mcp.server:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mdr_mcp"]
+
+[tool.pytest.ini_options]
+markers = ["live: tests that hit the real www.mdr.de feeds"]
